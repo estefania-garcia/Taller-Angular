@@ -1,0 +1,131 @@
+<div class="contenedor">
+    <div class="menu">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a href="#" class="icono"><ion-icon name="videocam-outline"></ion-icon></a>
+                <a class="navbar-brand me-auto" href="#">Snob Series</a>
+
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a href="#" class="icono"><ion-icon name="videocam-outline"></ion-icon></a>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Snob Series</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 menu-items">
+                            <li class="nav-item"><a class="nav-link mx-lg-2 active" aria-current="page" href="#">Series</a></li>
+                            <li class="nav-item"><a class="nav-link mx-lg-2" href="#">Premios y Eventos</a></li>
+                            <li class="nav-item"><a class="nav-link mx-lg-2" href="#">Celebridades</a></li>
+                        </ul>
+                        <form class="d-flex me-5 buscador" role="search">
+                            <label>
+                                <input class="form-control me-2" type="search" placeholder="Buscador"
+                                    aria-label="Search" />
+                            </label>
+                        </form>
+                    </div>
+                </div>
+
+                <li class="nav-item dropdown me-4 profile">
+                    <a class="nav-link2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">Perfil</a>
+                    <ul class="dropdown-menu dropdown-menu-end mini-dropdown">
+                        <li><a class="dropdown-item" href="#">Listas</a></li>
+                        <li><a class="dropdown-item" href="#">Reseñas</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Taller</a></li>
+                    </ul>
+                </li>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler"><ion-icon name="grid-outline"></ion-icon></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="titulo">
+        <h1>Información Series</h1>
+    </div>
+
+    <div class="buscar">
+        <form class="d-flex me-5 buscador" role="search">
+            <label>
+                <input class="form-control me-2" type="search" placeholder="Buscador" aria-label="Search" />
+            </label>
+        </form>
+        <li class="nav-item dropdown me-4 filtro">
+            <a class="nav-link2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Filtrar</a>
+            <ul class="dropdown-menu dropdown-menu-end mini-dropdown">
+                <li><a class="dropdown-item" href="#">Alfabeto</a></li>
+                <li><a class="dropdown-item" href="#">Fecha Creación</a></li>
+            </ul>
+        </li>
+    </div>
+
+    <div class="editar">
+        <button><ion-icon name="pencil-outline"></ion-icon>Editar</button>
+    </div>
+
+    <div class="tabla">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Channel</th>
+                    <th>Seassons</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (serie of series; track serie) {
+                    <tr>
+                        <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
+                        <td><dd>{{ serie.id }}</dd></td>
+                        <td><dd>{{ serie.name }}</dd></td>
+                        <td><dd>{{ serie.channel }}</dd></td>
+                        <td><dd>{{ serie.seasons }}</dd></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h2>Promedio de temporadas por serie: {{ promedioTemporadas | number:'1.0' }}</h2>
+    </div>
+
+    <div class="cartas">
+        <div id="carouselExample" class="carousel">
+            <div class="carousel-inner carousel2-inner">
+                @for (serie of series; track serie) {
+                    <div class="carousel-item carousel2-item">
+                        <div class="card">
+                            <div class="img-wrapper">
+                                <img [src]="serie.poster" class="card-img-top" [alt]="serie.name">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ serie.name }}</h5>
+                                <p class="card-text">{{ serie.description }}</p>
+                                <button>Ver más</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev carousel2-control-prev" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next carousel2-control-next" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
